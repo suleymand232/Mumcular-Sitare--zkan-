@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Çocuk Gelişimi - Mumcular Sitare Özkan ÇPAL</title>
+    <link rel="stylesheet" href="renkler.css">
+    <style>
+        :root {
+            --bg-color: #dedede;
+            --box-bg: dimgray;
+            --text-color: #3f3f3f;
+            --heading-color: #dedede;
+            --link-color: #dedede;
+        }
+
+        body.dark-mode {
+            --bg-color: #121212;
+            --box-bg: #1e1e1e;
+            --text-color: #e0e0e0;
+            --heading-color: #dedede;
+            --link-color: #dedede;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .nav-bar {
+            width: 100%;
+            background-color: #b20000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 0;
+            box-sizing: border-box;
+            position: relative;
+            z-index: 1000;
+            flex-wrap: wrap;
+        }
+
+        .nav-link, .drop-btn {
+            color: white !important;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 12px;
+            background: none;
+            border: none;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .ayrac {
+            color: rgba(255, 255, 255, 0.6);
+            margin: 0 4px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #800000;
+            min-width: 170px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+            border-radius: 0 0 8px 8px;
+            overflow: hidden;
+            z-index: 1001;
+        }
+
+        .dropdown-menu a {
+            color: white !important;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+            font-size: 14px;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #a00000;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        #darkModeToggle {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background-color: var(--box-bg);
+            color: var(--heading-color);
+            border: 2px solid var(--heading-color);
+            padding: 8px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 9999;
+        }
+
+        .imza {
+            text-align: center;
+            font-size: 14px;
+            color: #ccc;
+            margin-top: 15px;
+            font-style: italic;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .ataturk-logo {
+            width: 150px !important;
+            height: auto !important;
+            display: block !important;
+            margin: 15px auto !important;
+            border-radius: 20px;
+        }
+
+        .kutu {
+            width: 90%;
+            max-width: 1000px;
+            min-height: 400px;
+            margin: 20px auto;
+            background-color: var(--box-bg);
+            padding: 25px;
+            border-radius: 30px;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .kutu h1, .kutu h3, .kutu h4, .kutu h5 {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            max-width: 100%;
+            box-sizing: border-box;
+            padding: 0 10px;
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav-bar .ayrac {
+                display: none !important;
+            }
+
+            .nav-bar {
+                flex-direction: column !important;
+                align-items: center !important;
+                padding: 10px !important;
+            }
+
+            .menu-toggle {
+                display: block !important;
+                width: 100% !important;
+                text-align: center !important;
+                background: transparent !important;
+                border: none !important;
+                color: white !important;
+                font-size: 20px !important;
+                font-weight: bold !important;
+                cursor: pointer !important;
+                padding: 8px 0 !important;
+            }
+
+            .nav-bar .dropdown, 
+            .nav-bar a.nav-link:not(.menu-toggle) {
+                display: none !important;
+                width: 100% !important;
+                text-align: center !important;
+                margin: 5px 0 !important;
+            }
+
+            .nav-bar.aktif .dropdown, 
+            .nav-bar.aktif a.nav-link {
+                display: block !important;
+            }
+
+            .dropdown-menu {
+                position: static !important;
+                width: 100% !important;
+                box-shadow: none !important;
+                background-color: rgba(0,0,0,0.3) !important;
+            }
+
+            .kutu {
+                width: 95% !important;
+                padding: 15px !important;
+                margin: 10px auto !important;
+                border-radius: 15px !important;
+            }
+
+            .kutu h1 {
+                font-size: 20px !important;
+            }
+
+            .kutu h3 {
+                font-size: 15px !important;
+                line-height: 1.4 !important;
+            }
+
+            .kutu h4 {
+                font-size: 14px !important;
+            }
+
+            .kutu h5 {
+                font-size: 12px !important;
+            }
+        }
+
+        @media screen and (min-width: 769px) {
+            .menu-toggle {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="nav-bar" id="mainNav">
+        <button class="menu-toggle" onclick="mobilMenuAcKapat()">☰ Menü</button>
+
+        <div class="dropdown">
+            <button class="drop-btn">Okulumuz ▾</button>
+            <div class="dropdown-menu">
+                <a href="mudur.html">Müdür</a>
+                <a href="kadromuz.html">Kadromuz</a>
+                <a href="tarihce.html">Tarihçe</a>
+                <a href="okulumuz-hakkinda.html">Okulumuz Hakkında</a>
+            </div>
+        </div>
+        <span class="ayrac">|</span>
+
+        <div class="dropdown">
+            <button class="drop-btn">Alanlar ▾</button>
+            <div class="dropdown-menu">
+                <a href="elektrik.html">Elektrik</a>
+                <a href="bilisim.html">Bilişim</a>
+                <a href="cocuk-gelisim.html">Çocuk Gelişim</a>
+            </div>
+        </div>
+        <span class="ayrac">|</span>
+
+        <a href="okul-aile-birligi.html" class="nav-link">Okul Aile Birliği</a>
+        <span class="ayrac">|</span>
+
+        <a href="uygulama-anaokulu.html" class="nav-link">Uygulama Anaokulu</a>
+        <span class="ayrac">|</span>
+
+        <a href="iletisim.html" class="nav-link ikon"> İletişim</a>
+    </div>
+
+    <button id="darkModeToggle" onclick="geceModunuAcKapat()">🌙 Mod</button>
+
+    <p class="imza">Made by Süleyman</p>
+    <img src="ataturk.png" alt="AtaturkResmi" class="ataturk-logo">
+    
+    <div class="kutu">
+        <img src="cocuk.jpg" alt="Çocuk Gelişimi Atölyesi" style="width: 500px !important; max-width: 100% !important; height: auto !important; display: block; margin: 15px auto; border-radius: 20px;">
+        <hr>
+        <h1>ALANIN TANITIMI VE AMACI </h1>
+        <hr>
+        <h3>0-12 yaş çocuklarının Bilinçsel, Bedensel ve küçüklük gelişimi özelliklerini, Özel Eğitim gerektiren çocukları ve Kaynaştırma Eğitimi ilkelerini tanıyarak Kreş, Yuva, Anaokulu, Anasınıfları ve Özel Eğitim Kurumlarında Eğitime yardımcı eleman yetiştiren, aynı zamanda üniversiteye öğrenci hazırlayan bir alandır.
+
+Çocuk Gelişimi ve Eğitimi alanı altında yer alan mesleklerde, sektörün ihtiyaçları, bilimsel ve teknolojik gelişmeler doğrultusunda gerekli olan mesleki yeterlikleri kazanmış nitelikli meslek elemanları yetiştirilmesi amaçlanmaktadır.</h3>
+        <hr>
+        <h1>ÖZEL EĞİTİM</h1>
+        <hr>
+        <h3>TANIMI: Özel Eğitimde Öğretmen yardımcısının sahip olduğu, özür grubuna uygun eğitim gruba uygun eğitim programını uygulamada öğretmene yardımcı olma yeterliliklerini kazandırmaya yönelik eğitim ve öğretim verilen daldır.
+
+AMACI :Çocuk Gelişimi ve Eğitimi alanında özel eğitimde öğretmen yardımcılığı mesleğin yeterliliklerine sahip meslek elemanları yetiştirmeyi amaçlamaktadır.</h3>
+        <hr>
+        <h1>D. YATAY VE DİKEY GEÇİŞLER</h1>
+        <hr>
+        <h3>Alan/dalda sertifika belge ve diplomaya götüren tüm programlar ve dalları arasında geçiş yapabilir. Diploma almaya hak kazanan öğrenci Çocuk Gelişimi ve Eğitimi alanının devamı niteliğindeki programların veya bu alana en yakın programların uygulandığı Meslek Yüksek okuluna sınavsız geçiş yapılabilir ya da sınav sonuçlarına göre diğer Yüksek öğrenim kurumlarını tercih edebilir.</h3>
+        <hr>
+        <h1>E. GİRİŞ KOŞULLARI</h1>
+        <hr>
+        <h3>Öğrencinin Sağlık durumu, Çocuk Gelişimi ve Eğitimi alanı altında yer alan mesleklerin gerektirdiği işleri yapmaya uygun olmalıdır.
+Bu bölümde kayıtlar not ortalaması esasına göre ön kayıt yöntemi ile yapılmaktadır.</h3>
+        <hr>
+        <h1>F. ÇOCUK GELİŞİMİ VE EĞİTİMİ İSTİHDAM ALANLARI</h1>
+        <hr>
+        <h3>Çocuk Gelişimi ve Eğitimi alanından mezun olan öğrenciler, seçtikleri dalda kazandıkları yeterlilikler doğrultusunda Eğitim sektöründe;
+
+Erken Çocukluk Eğitim kurumlarında, Özel Eğitim ve Rehabilitasyon merkezlerinde çalışabilirler.</h3>
+        <hr>
+        <h5> Yayın: 22.12.2014 - Güncelleme: 10.10.2024 14:18 - Görüntülenme: 4962</h5>
+    </div>
+
+    <script>
+        function mobilMenuAcKapat() {
+            var nav = document.getElementById("mainNav");
+            nav.classList.toggle("aktif");
+        }
+
+        function geceModunuAcKapat() {
+            document.body.classList.toggle("dark-mode");
+            const btn = document.getElementById("darkModeToggle");
+            if (document.body.classList.contains("dark-mode")) {
+                btn.innerHTML = "☀️ Mod";
+                localStorage.setItem("theme", "dark");
+            } else {
+                btn.innerHTML = "🌙 Mod";
+                localStorage.setItem("theme", "light");
+            }
+        }
+
+        window.onload = function() {
+            if (localStorage.getItem("theme") === "dark") {
+                document.body.classList.add("dark-mode");
+                const btn = document.getElementById("darkModeToggle");
+                if (btn) btn.innerHTML = "☀️ Mod";
+            }
+        }
+    </script>
+</body>
+</html>
